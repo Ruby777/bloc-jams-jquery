@@ -7,8 +7,17 @@ class Player {
   }
 
   prettyTime(timeInSeconds){
-    var minutes = timeInSeconds/60;
-    return minutes.toFixed(2);
+    var minutes = Math.floor(timeInSeconds/60);
+
+    // calculate seconds after minutes are removed
+    var seconds = Math.floor(timeInSeconds - (minutes * 60));
+
+    // Pads the seconds with a 0 if they are less than 10.
+    // We want '0:05' for five seconds, NOT '0:5'.
+    if(minutes < 10){minutes = "0"+minutes;}
+    if(seconds < 10){seconds = "0"+seconds;}
+
+    return minutes + ':' + seconds;
   }
 
   getDuration() {
